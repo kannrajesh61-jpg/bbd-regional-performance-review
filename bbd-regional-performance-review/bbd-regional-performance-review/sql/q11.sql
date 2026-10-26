@@ -1,0 +1,3 @@
+-- Business question: region and month report.
+-- INNER JOIN is appropriate because only orders with a matching customer and region are reportable; COUNT(DISTINCT customer_id) avoids counting repeat orders as multiple customers.
+SELECT c.region AS region, o.order_month AS order_month, COUNT(o.order_id) AS number_of_orders, COUNT(DISTINCT o.customer_id) AS number_of_customers, SUM(CASE WHEN o.status = 'completed' THEN o.amount ELSE 0 END) AS total_revenue, AVG(CASE WHEN o.status = 'completed' THEN o.amount END) AS average_revenue FROM orders o JOIN customers c ON o.customer_id = c.customer_id GROUP BY c.region, o.order_month ORDER BY c.region, o.order_month;

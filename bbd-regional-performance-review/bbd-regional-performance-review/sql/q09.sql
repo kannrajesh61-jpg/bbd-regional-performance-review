@@ -1,0 +1,2 @@
+-- Business question: order-level fact table.
+SELECT o.order_id AS order_id, o.order_month AS order_month, c.first_name AS first_name, c.last_name AS last_name, c.region AS region, r.rep_name AS rep_name, o.item AS item, o.quantity AS quantity, o.amount AS amount, o.status AS status FROM orders o JOIN customers c ON o.customer_id = c.customer_id JOIN reps r ON c.rep_id = r.rep_id ORDER BY o.order_id;
